@@ -13,6 +13,12 @@ struct ContentView: View {
     var body: some View {
        
         Text("\(currentNumber)")
+        
+        VStack{
+            Text("Prime")
+            Text("Not Prime")
+
+        }
     }
 }
 
