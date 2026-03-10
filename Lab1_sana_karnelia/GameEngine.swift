@@ -24,9 +24,20 @@ class GameEngine: ObservableObject {
     
     @Published private(set) var state: RoundState = .waiting
     @Published var currentNumber = Int.random(in: 2...100)
+    
+    // Timer
+       private var timerCancellable: AnyCancellable?
+       private let secondsPerRound: TimeInterval = 5.0
+    
+    
+    init() {
+         startTimer()
+     }
 
-    
-    
+     deinit {
+         timerCancellable?.cancel()
+     }
+
     
     //user anwer
        func answer(_ choice: Choice) {
@@ -40,7 +51,28 @@ class GameEngine: ObservableObject {
            state = .answered(correct: isCorrect)
           
        }
-    
+    private func startTimer() {
+         // Fires every 5 seconds; on each tick we end current round and begin next
+         timerCancellable = Timer.publish(every: secondsPerRound, on: .main, in: .common)
+             .autoconnect()
+             .sink { [weak self] _ in
+                 self?.timerFired()
+             }
+     }
+    private func timerFired() {
+           // If user did not answer in 5 seconds => wrong
+           if state == .waiting {
+               state = .timedOut
+           }
+
+           // Move to next round (new number)
+           startNewRound()
+       }
+
+       private func startNewRound() {
+           currentNumber = Int.random(in: 2...100)
+           state = .waiting
+       }
     //prime/notprime logic
     private func isPrime(_ n: Int) -> Bool {
            if n < 2 { return false }
