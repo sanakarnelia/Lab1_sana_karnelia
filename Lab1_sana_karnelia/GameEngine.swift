@@ -46,12 +46,12 @@ class GameEngine: ObservableObject {
     //user anwer
        func answer(_ choice: Choice) {
            guard state == .waiting else { return }
-
+         
            let actualPrime = isPrime(currentNumber)
            let userThinksPrime = (choice == .prime)
            let isCorrect = (userThinksPrime == actualPrime)
 
-           
+           recordAttempt(isCorrect: isCorrect)
            state = .answered(correct: isCorrect)
           
        }
@@ -66,6 +66,7 @@ class GameEngine: ObservableObject {
     private func timerFired() {
            // If user did not answer in 5 seconds => wrong
            if state == .waiting {
+               recordAttempt(isCorrect: false)
                state = .timedOut
            }
 
@@ -77,6 +78,22 @@ class GameEngine: ObservableObject {
            currentNumber = Int.random(in: 2...100)
            state = .waiting
        }
+    
+    // MARK: - Scoring
+       private func recordAttempt(isCorrect: Bool) {
+           
+
+        if isCorrect {
+               totalCorrect += 1
+            
+           } else {
+               totalWrong += 1
+           }
+
+         
+       }
+    
+    
     //prime/notprime logic
     private func isPrime(_ n: Int) -> Bool {
            if n < 2 { return false }
