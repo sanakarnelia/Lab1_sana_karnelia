@@ -9,13 +9,13 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @State private var currentNumber = Int.random(in: 2...100)
+  
     
     //GameEngine
     @StateObject private var engine = GameEngine()
     var body: some View {
        
-        Text("\(currentNumber)")
+        Text("\(engine.currentNumber)")
         
         VStack{
             Text("Prime")

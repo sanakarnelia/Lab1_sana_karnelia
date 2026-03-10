@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 class GameEngine: ObservableObject {
-    
+    @Published var currentNumber = Int.random(in: 2...100)
 }
