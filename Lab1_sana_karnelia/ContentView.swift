@@ -17,8 +17,9 @@ struct ContentView: View {
         VStack{
             Text("Prime")
             Text("Not Prime")
-
-        }
+            }
+        .font(.system(size: 34))
+        .foregroundColor(.teal)
     }
 }
 
