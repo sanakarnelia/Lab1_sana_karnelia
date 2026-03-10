@@ -40,8 +40,17 @@ struct ContentView: View {
                 feedbackView
                     .frame(height: 90)
                 
-                }
             }
+           
+        }
+        // addd to check 
+        HStack(spacing: 16) {
+            Text("Correct: \(engine.totalCorrect)")
+            Text("Wrong: \(engine.totalWrong)")
+        }
+                .font(.footnote)
+                .foregroundColor(.gray)
+                .padding(.bottom, 10)
         }
         //ui helper
         private func choiceLabel(_ title: String, action: @escaping () -> Void) -> some View {
