@@ -20,7 +20,7 @@ struct ContentView: View {
             
             VStack(spacing: 26) {
                 
-  
+                
                 // Random number
                 Text("\(engine.currentNumber)")
                     .font(.system(size: 64, weight: .semibold, design: .serif))
@@ -29,30 +29,32 @@ struct ContentView: View {
                 // Tappable labels (Prime / Not Prime)
                 VStack(spacing: 18) {
                     choiceLabel("Prime") {
-                     print("click - prime")
+                        engine.answer(.prime)
                     }
                     
                     choiceLabel("not Prime") {
-                       print("click - notprime")
+                        engine.answer(.notPrime)
                     }
+                }
+                
+                
                 }
             }
         }
+        //ui helper
+        private func choiceLabel(_ title: String, action: @escaping () -> Void) -> some View {
+            Text(title)
+                .font(.system(size: 34, weight: .regular, design: .serif))
+                .foregroundColor(.teal)
+                .padding(.vertical, 6)
+                .contentShape(Rectangle()) // bigger tap area
+                .onTapGesture {
+                    action()
+                }
+        }
         
     }
-    //ui helper
-    private func choiceLabel(_ title: String, action: @escaping () -> Void) -> some View {
-          Text(title)
-              .font(.system(size: 34, weight: .regular, design: .serif))
-              .foregroundColor(.teal)
-              .padding(.vertical, 6)
-              .contentShape(Rectangle()) // bigger tap area
-              .onTapGesture {
-                  action()
-              }
-      }
 
-}
             
 #Preview {
     ContentView()
