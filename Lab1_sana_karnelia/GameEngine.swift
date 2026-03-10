@@ -25,6 +25,10 @@ class GameEngine: ObservableObject {
     @Published private(set) var state: RoundState = .waiting
     @Published var currentNumber = Int.random(in: 2...100)
     
+    
+    @Published private(set) var totalCorrect: Int = 0
+    @Published private(set) var totalWrong: Int = 0
+
     // Timer
        private var timerCancellable: AnyCancellable?
        private let secondsPerRound: TimeInterval = 5.0
