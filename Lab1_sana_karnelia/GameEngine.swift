@@ -4,3 +4,10 @@
 //
 //  Created by Maaz Karnelia on 2026-03-10.
 //
+
+import Foundation
+import Combine
+
+class GameEngine: ObservableObject {
+    
+}
