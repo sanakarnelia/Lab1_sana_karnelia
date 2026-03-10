@@ -36,7 +36,9 @@ struct ContentView: View {
                         engine.answer(.notPrime)
                     }
                 }
-                
+                // Feedback icon based on state machine
+                feedbackView
+                    .frame(height: 90)
                 
                 }
             }
@@ -52,6 +54,25 @@ struct ContentView: View {
                     action()
                 }
         }
+    
+    private var feedbackView: some View {
+        switch engine.state {
+        case .waiting:
+            return AnyView(EmptyView())
+        case .answered(let correct):
+            return AnyView(
+                Image(systemName: correct ? "checkmark.circle.fill" : "xmark.circle.fill")
+                    .font(.system(size: 72))
+                    .foregroundColor(correct ? .green : .red)
+            )
+        case .timedOut:
+            return AnyView(
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 72))
+                    .foregroundColor(.red)
+            )
+        }
+    }
         
     }
 
