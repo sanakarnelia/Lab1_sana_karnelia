@@ -9,8 +9,37 @@ import Foundation
 import Combine
 
 class GameEngine: ObservableObject {
-    @Published var currentNumber = Int.random(in: 2...100)
+
     
+    enum Choice {
+           case prime
+           case notPrime
+       }
+
+    enum RoundState: Equatable {
+            case waiting
+            case answered(correct: Bool)
+            case timedOut
+        }
+    
+    @Published private(set) var state: RoundState = .waiting
+    @Published var currentNumber = Int.random(in: 2...100)
+
+    
+    
+    
+    //user anwer
+       func answer(_ choice: Choice) {
+           guard state == .waiting else { return }
+
+           let actualPrime = isPrime(currentNumber)
+           let userThinksPrime = (choice == .prime)
+           let isCorrect = (userThinksPrime == actualPrime)
+
+           
+           state = .answered(correct: isCorrect)
+          
+       }
     
     //prime/notprime logic
     private func isPrime(_ n: Int) -> Bool {
