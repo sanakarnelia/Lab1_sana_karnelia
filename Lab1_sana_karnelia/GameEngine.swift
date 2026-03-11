@@ -87,15 +87,23 @@ class GameEngine: ObservableObject {
     
     // MARK: - Scoring
        private func recordAttempt(isCorrect: Bool) {
-           
+           batchAttempts += 1
 
-        if isCorrect {
+           if isCorrect {
                totalCorrect += 1
+                batchCorrect += 1
             
            } else {
                totalWrong += 1
+               batchWrong += 1
            }
-
+           if batchAttempts == 10 {
+               
+               // reset batch for next 10
+               batchAttempts = 0
+               batchCorrect = 0
+               batchWrong = 0
+           }
          
        }
     
