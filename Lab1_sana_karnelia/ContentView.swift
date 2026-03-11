@@ -50,9 +50,6 @@ struct ContentView: View {
             Button("OK") { }
         } message: {
             Text("""
-                 Correct: \(engine.batchCorrect)
-                 Wrong: \(engine.batchWrong)
-
                  Total Correct: \(engine.totalCorrect)
                  Total Wrong: \(engine.totalWrong)
                  """)
