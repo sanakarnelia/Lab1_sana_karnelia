@@ -25,9 +25,15 @@ class GameEngine: ObservableObject {
     @Published private(set) var state: RoundState = .waiting
     @Published var currentNumber = Int.random(in: 2...100)
     
-    
+    //total
     @Published private(set) var totalCorrect: Int = 0
     @Published private(set) var totalWrong: Int = 0
+    
+    //btach - 10 round
+    @Published private(set) var batchCorrect: Int = 0
+    @Published private(set) var batchWrong: Int = 0
+    @Published private(set) var batchAttempts: Int = 0
+
 
     // Timer
        private var timerCancellable: AnyCancellable?
