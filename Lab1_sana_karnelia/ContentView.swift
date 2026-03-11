@@ -53,6 +53,16 @@ struct ContentView: View {
                 
             }
             
+        }.alert("Results (Last 10 Attempts)", isPresented: $engine.showSummaryDialog) {
+            Button("OK") { }
+        } message: {
+            Text("""
+                 Correct: \(engine.batchCorrect)
+                 Wrong: \(engine.batchWrong)
+
+                 Total Correct: \(engine.totalCorrect)
+                 Total Wrong: \(engine.totalWrong)
+                 """)
         }
        
     
