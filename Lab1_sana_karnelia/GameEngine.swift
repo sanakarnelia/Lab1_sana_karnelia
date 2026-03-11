@@ -33,8 +33,7 @@ class GameEngine: ObservableObject {
     @Published private(set) var batchCorrect: Int = 0
     @Published private(set) var batchWrong: Int = 0
     @Published private(set) var batchAttempts: Int = 0
-
-
+    
     // Timer
        private var timerCancellable: AnyCancellable?
        private let secondsPerRound: TimeInterval = 5.0
