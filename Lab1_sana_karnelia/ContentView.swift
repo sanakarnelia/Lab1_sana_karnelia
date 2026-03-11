@@ -42,14 +42,7 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                // addd to check
-                HStack(spacing: 16) {
-                    Text("Correct: \(engine.totalCorrect)")
-                    Text("Wrong: \(engine.totalWrong)")
-                }
-                .font(.footnote)
-                .foregroundColor(.gray)
-                .padding(.bottom, 10)
+                
                 
             }
             
