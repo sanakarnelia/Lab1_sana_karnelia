@@ -38,6 +38,10 @@ class GameEngine: ObservableObject {
        private var timerCancellable: AnyCancellable?
        private let secondsPerRound: TimeInterval = 5.0
     
+    //summary box after 10 attempt
+    @Published var showSummaryDialog: Bool = false
+
+    
     
     init() {
          startTimer()
@@ -97,7 +101,8 @@ class GameEngine: ObservableObject {
                batchWrong += 1
            }
            if batchAttempts == 10 {
-               
+               showSummaryDialog = true
+
                // reset batch for next 10
                batchAttempts = 0
                batchCorrect = 0
